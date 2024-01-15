@@ -1,0 +1,29 @@
+<ng-container *ngIf="bookmarks$ | async as bookmarks">
+  @for (bookmark of bookmarks; track $index) {
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div
+        mat-card-avatar
+        class="example-header-image"
+        [style.background-image]="'url(' + bookmark.hotel.imageUrl + ')'"
+      ></div>
+      <mat-card-title>{{ bookmark.hotel.name }}</mat-card-title>
+      <mat-card-subtitle>{{ bookmark.hotel.address }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="bookmark.hotel.maxImageUrl" />
+    <mat-card-content>
+      <div [innerHTML]="bookmark.hotel.description"></div>
+      <section><b>Price</b> {{ bookmark.price }}</section>
+      <section><b>Rooms</b> {{ bookmark.hotel.roomsCount }}</section>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-button [href]="bookmark.sourceLink" target="_blank" color="primary"
+        >Go to source</a
+      >
+      <button mat-button color="warn" (click)="onDelete(bookmark)">
+        Delete
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  }
+</ng-container>

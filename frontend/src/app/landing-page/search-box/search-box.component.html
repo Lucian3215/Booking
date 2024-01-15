@@ -1,0 +1,16 @@
+<mat-form-field appearance="outline">
+  <mat-label>Location</mat-label>
+  <input
+    type="text"
+    placeholder="Pick one"
+    aria-label="Number"
+    matInput
+    #input
+    [formControl]="myControl"
+  />
+</mat-form-field>
+@if (searching) {
+<p>searching</p>
+} @for (option of (filteredOptions | async); track $index) {
+<article (click)="onSelect(option)" matStepperNext>{{ option }}</article>
+}
